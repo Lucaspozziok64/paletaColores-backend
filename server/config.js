@@ -3,6 +3,7 @@ import morgan from "morgan";
 import cors from "cors"
 import { fileURLToPath } from "url";
 import { dirname } from "path";
+import '../db/config.js'
 
 export default class Server {
     constructor() {
