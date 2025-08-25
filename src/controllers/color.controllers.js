@@ -29,3 +29,17 @@ export const LeerColores = async (req, res) => {
     res.status(500).json({ mensaje: 'Error al leer los Colores' })
   }
 };
+
+export const editarColorPorId = async (req, res)=> {
+  try {
+    const colorModificado = await Color.findByIdAndUpdate(req.params.id, req.body)
+
+    res.status(200).json({ mensaje: 'El color ha sido actualizado' })
+    if(!colorModificado) {
+      return res.status(404).json({ mensaje: 'Color no econtrado' })
+    }
+  } catch (error) {
+    console.error(error)
+    res.status(500).json({ mensaje: 'Error al editar el color' })
+  }
+}
