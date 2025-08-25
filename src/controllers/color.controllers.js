@@ -57,3 +57,19 @@ export const borrarColorPorId = async (req, res)=> {
     res.status(500).json({ mensaje: 'Error al editar el color' })
   }
 }
+
+export const leerColorPorId = async (req, res) => {
+  try {
+    // 1-Obtener el parametro del requets
+    // 2- Pedir a mongoose que encuenter el producto con tal id
+    const colorBuscado = await Color.findById(req.params.id)
+    if(!colorBuscado) {
+      return res.status(404).json({ mensaje: 'Color no encontrado' })
+    }
+    // 3- Contestar al front
+    res.status(200).json(colorBuscado)
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ mensaje: 'Error al obtener el color' })
+  }
+}
